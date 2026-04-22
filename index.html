@@ -3,340 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raihan Mondal | 3D Designer Portfolio</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <title>Raihan Mondal Web | Creative Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        /* === GLOBAL STYLES === */
-        :root {
-            --primary-color: #6c5ce7; /* Elegant Purple */
-            --secondary-color: #00cec9; /* Modern Teal */
-            --accent-color: #ff7675; /* Soft Coral */
-            --bg-color: #f4f6fb; /* Light grayish blue background */
-            --text-color: #2d3436; /* Dark gray for readability */
-            --card-bg: #ffffff;
-            --shadow: 0 10px 30px rgba(0,0,0,0.1);
-            --font-family: 'Poppins', sans-serif;
-            --heading-font: 'Playfair Display', serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #0f172a; color: white; text-align: center; overflow-x: hidden; }
+        
+        /* Header Section */
+        header { padding: 80px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #38bdf8; }
+        h1 { font-size: 3rem; color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+        p.subtitle { font-size: 1.2rem; color: #94a3b8; margin-top: 10px; }
 
-        body {
-            font-family: var(--font-family);
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+        /* Gallery Section */
+        .gallery { padding: 50px 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
+        .card { background: #1e293b; padding: 20px; border-radius: 15px; border: 1px solid #334155; transition: 0.3s; cursor: pointer; }
+        .card:hover { transform: translateY(-10px); border-color: #38bdf8; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .card h3 { color: #38bdf8; margin-bottom: 10px; }
 
-        h1, h2, h3 {
-            font-family: var(--heading-font);
-            margin: 0;
-            color: var(--primary-color);
-        }
+        /* Contact Box */
+        .contact { background: #1e293b; padding: 40px; margin: 50px 20px; border-radius: 20px; border: 1px dashed #38bdf8; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; background: #0f172a; color: white; }
+        button { background: #38bdf8; color: #0f172a; padding: 12px 30px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #7dd3fc; }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* === HEADER === */
-        header {
-            background-color: var(--card-bg);
-            padding: 20px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* === HERO SECTION === */
-        .hero {
-            background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), rgba(0, 206, 201, 0.1));
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .hero h2 {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        /* === UPLOAD SECTION === */
-        .upload-section {
-            width: 90%;
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 30px;
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-
-        .upload-section h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .upload-controls {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        #imageUpload {
-            display: none;
-        }
-
-        .upload-btn {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .upload-btn:hover {
-            background-color: #5849d4;
-            transform: scale(1.05);
-        }
-
-        .upload-status {
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        /* === GALLERY SECTION === */
-        .gallery-section {
-            width: 90%;
-            max-width: 1200px;
-            margin: 50px auto;
-        }
-
-        .gallery-section h3 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            aspect-ratio: 16/9; /* Standard widescreen look */
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .gallery-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));
-            padding: 20px;
-            color: #fff;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-info {
-            opacity: 1;
-        }
-
-        .gallery-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        /* === FOOTER === */
-        footer {
-            background-color: var(--card-bg);
-            padding: 30px 0;
-            margin-top: auto;
-            border-top: 1px solid #eaeaea;
-        }
-
-        .footer-container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-text {
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* === RESPONSIVE STYLES === */
-        @media (max-width: 768px) {
-            .hero h2 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-        }
-    }
+        footer { padding: 30px; color: #64748b; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="header-container">
-            <h1 class="logo">RM Designs</h1>
-        </div>
+        <h1>RAIHAN MONDAL</h1>
+        <p class="subtitle">3D Sculptor | Web Developer | Designer</p>
     </header>
 
-    <section class="hero">
-        <h2>রাইহান মন্ডল</h2>
-        <p>৩ডি ডিজাইনার এবং ডেভেলপার পোর্টফোলিও</p>
-    </section>
-
-    <section class="upload-section">
-        <h3>নতুন ফটো আপলোড করুন</h3>
-        <div class="upload-controls">
-            <label for="imageUpload" class="upload-btn">
-                ফাইল নির্বাচন করুন
-                <input type="file" id="imageUpload" accept="image/*" multiple>
-            </label>
-            <p class="upload-status" id="uploadStatus">কোনো ফাইল নির্বাচন করা হয়নি</p>
+    <section class="gallery">
+        <div class="card">
+            <h3>3D Artworks</h3>
+            <p>Nomad Sculpt দিয়ে তৈরি আমার সেরা কাজগুলো এখানে থাকবে।</p>
+        </div>
+        <div class="card">
+            <h3>Web Projects</h3>
+            <p>আমার তৈরি করা প্রফেশনাল ওয়েবসাইট এবং কোডিং প্রোজেক্ট।</p>
+        </div>
+        <div class="card">
+            <h3>Design Studio</h3>
+            <p>ক্রিয়েটিভ লোগো এবং টাইপোগ্রাফি ডিজাইন সল্যুশন।</p>
         </div>
     </section>
 
-    <section class="gallery-section">
-        <h3>আমার জাদুকরী গ্যালারি</h3>
-        <div class="gallery-grid" id="galleryGrid">
-            </div>
+    <section class="contact">
+        <h2>আমাকে মেসেজ পাঠান</h2>
+        <p>দিদি বা বন্ধুরা কোনো পরামর্শ দিতে চাইলে নিচে নাম লিখে পাঠান।</p>
+        <input type="text" placeholder="আপনার নাম">
+        <textarea rows="4" placeholder="আপনার মেসেজ..."></textarea>
+        <button onclick="alert('ধন্যবাদ! আপনার মেসেজটি রাইহানের কাছে পৌঁছে গেছে।')">মেসেজ পাঠান</button>
     </section>
 
     <footer>
-        <div class="footer-container">
-            <p class="footer-text">&copy; 2024 রাইহান মন্ডল | ৩ডি পোর্টফোলিও সাইট</p>
-        </div>
+        <p>© 2026 Raihan Mondal Web - All Rights Reserved</p>
     </footer>
 
-    <script>
-        const imageUpload = document.getElementById('imageUpload');
-        const uploadStatus = document.getElementById('uploadStatus');
-        const galleryGrid = document.getElementById('galleryGrid');
-
-        // Function to create a gallery item (HTML structure)
-        function createGalleryItem(imageSrc, title) {
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-
-            const img = document.createElement('img');
-            img.src = imageSrc;
-            img.alt = title;
-
-            const galleryInfo = document.createElement('div');
-            galleryInfo.className = 'gallery-info';
-
-            const galleryTitle = document.createElement('div');
-            galleryTitle.className = 'gallery-title';
-            galleryTitle.textContent = title;
-
-            galleryInfo.appendChild(galleryTitle);
-            galleryItem.appendChild(img);
-            galleryItem.appendChild(galleryInfo);
-
-            return galleryItem;
-        }
-
-        // Handle file upload and display in gallery (Browser memory only)
-        imageUpload.addEventListener('change', (event) => {
-            const files = event.target.files;
-            if (files.length > 0) {
-                uploadStatus.textContent = `${files.length}টি ফাইল নির্বাচন করা হয়েছে`;
-
-                // Temporarily clear the existing gallery (for this example, as we're not saving yet)
-                galleryGrid.innerHTML = ''; 
-
-                Array.from(files).forEach((file, index) => {
-                    if (file.type.match('image.*')) {
-                        const reader = new FileReader();
-
-                        reader.onload = function(e) {
-                            const imageSrc = e.target.result;
-                            const title = `প্রোজেক্ট ${index + 1}`; // Temporary project title
-                            const galleryItem = createGalleryItem(imageSrc, title);
-                            galleryGrid.appendChild(galleryItem);
-                        };
-
-                        reader.readAsDataURL(file);
-                    }
-                });
-            } else {
-                uploadStatus.textContent = "কোনো ফাইল নির্বাচন করা হয়নি";
-            }
-        });
-
-        // Add some dummy initial projects for initial look (Optional)
-        // const initialProjects = [
-        //   { src: 'path/to/project1.jpg', title: '৩ডি ম্যাজিক ফ্রেম' },
-        //   { src: 'path/to/project2.jpg', title: 'আর্কিটেকচার ডিজাইন' }
-        // ];
-        // initialProjects.forEach(proj => {
-        //   const item = createGalleryItem(proj.src, proj.title);
-        //   galleryGrid.appendChild(item);
-        // });
-    </script>
 </body>
 </html>
